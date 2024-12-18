@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prácticas con HTML, CSS y JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "left main right"
+                "footer footer footer";
+            grid-template-rows: auto 1fr auto;
+            grid-template-columns: 1fr 3fr 1fr;
+            height: 100vh;
+        }
+
+        header {
+            grid-area: header;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        nav.left {
+            grid-area: left;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            border-right: 1px solid #ddd;
+        }
+
+        nav.right {
+            grid-area: right;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            border-left: 1px solid #ddd;
+        }
+
+        main {
+            grid-area: main;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        form {
+            margin-bottom: 2rem;
+        }
+
+        .result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Prácticas con HTML, CSS y JavaScript</h1>
+        <p>Generación de series y cálculos matemáticos</p>
+    </header>
+
+    <nav class="left">
+        <h3>Menú Izquierdo</h3>
+        <ul>
+            <li>Enlace 1</li>
+            <li>Enlace 2</li>
+            <li>Enlace 3</li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Resultados</h2>
+        <form id="fibonacciForm">
+            <h3>1. Generar Serie de Fibonacci</h3>
+            <label for="fibonacciN">Introduce un número N:</label>
+            <input type="number" id="fibonacciN" name="fibonacciN" required>
+            <button type="button" onclick="generateFibonacci()">Generar</button>
+        </form>
+        <div id="fibonacciResult" class="result"></div>
+
+    </main>
+
+    <nav class="right">
+        <h3>Menú Derecho</h3>
+        <ul>
+            <li>Enlace A</li>
+            <li>Enlace B</li>
+            <li>Enlace C</li>
+        </ul>
+    </nav>
+
+    <footer>
+        <p>&copy; 2024 Prácticas de Desarrollo Web</p>
+    </footer>
+
+    <script>
+        function generateFibonacci() {
+            const n = parseInt(document.getElementById('fibonacciN').value);
+            if (isNaN(n) || n < 0) {
+                document.getElementById('fibonacciResult').innerText = 'Por favor, introduce un número válido.';
+                return;
+            }
+
+            let a = 0, b = 1;
+            const series = [a];
+
+            for (let i = 1; i < n; i++) {
+                series.push(b);
+                [a, b] = [b, a + b];
+            }
+
+            document.getElementById('fibonacciResult').innerText = `Serie de Fibonacci: ${series.join(', ')}`;
+        }
+    </script>
+</body>
+</html>
